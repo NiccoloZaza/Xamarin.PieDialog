@@ -79,16 +79,16 @@
     <Folder Include="Resources\mipmap-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PieDialog\PieDialog.csproj">
-      <Project>{E04131FD-E4E0-4491-9216-22E10D3444DD}</Project>
-      <Name>PieDialog</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\camera.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PieDialog\PieDialog.csproj">
+      <Project>{e04131fd-e4e0-4491-9216-22e10d3444dd}</Project>
+      <Name>PieDialog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

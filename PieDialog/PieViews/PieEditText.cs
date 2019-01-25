@@ -12,6 +12,7 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using PieDialog.CacheUtils;
 using PieDialog.PieEnums;
 using PieDialog.PieUtilities;
 
@@ -37,7 +38,7 @@ namespace PieDialog.PieViews
 
         public ComplexUnitType TextSizeFormat { get; set; } = ComplexUnitType.Sp;
 
-        public int Font { get; set; } = -1;
+        public string Font { get; set; } = string.Empty;
 
         public string Value { get { return GetValue(); } }
 
@@ -76,10 +77,14 @@ namespace PieDialog.PieViews
                 editText.SetMaxLines(MaxLines);
             }
 
-            if (Font >= 0)
+            if (!(string.IsNullOrEmpty(Font) || string.IsNullOrWhiteSpace(Font)))
             {
-                Typeface face = context.Resources.GetFont(Font);
-                editText.SetTypeface(face, FontStyle);
+                try
+                {
+                    Typeface face = FontCache.Instance.GetFont(Font, context);
+                    editText.SetTypeface(face, FontStyle);
+                }
+                catch (Exception) { }
             }
 
             editText.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);

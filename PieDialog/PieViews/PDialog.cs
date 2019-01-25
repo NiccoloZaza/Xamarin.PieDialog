@@ -23,8 +23,8 @@ namespace PieDialog.PieViews
         internal FrameLayout GetView(Context context)
         {
             FrameLayout mainFrame = new FrameLayout(context);
-            mainFrame.SetFocusable(ViewFocusability.Focusable);
             mainFrame.FocusableInTouchMode = true;
+            mainFrame.Focusable = true;
             mainFrame.SetClipChildren(false);
             mainFrame.SetClipToPadding(false);
             mainFrame.LayoutParameters = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MatchParent, FrameLayout.LayoutParams.WrapContent, GravityFlags.Center);

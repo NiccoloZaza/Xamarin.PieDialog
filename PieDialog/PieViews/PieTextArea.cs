@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using PieDialog.CacheUtils;
 using PieDialog.PieEnums;
 using PieDialog.PieUtilities;
 using static Android.Text.TextUtils;
@@ -24,7 +25,7 @@ namespace PieDialog.PieViews
         public int AnimationDelay { get; set; } = 0;
         public int AnimationDuration { get; set; } = 0;
         public string Text { get; set; } = "Text";
-        public int Font { get; set; } = -1;
+        public string Font { get; set; } = string.Empty;
         public int TextSize { get; set; } = 15;
         public ComplexUnitType TextSizeFormat { get; set; } = ComplexUnitType.Sp;
         public int MaxLines { get; set; } = -1;
@@ -57,10 +58,14 @@ namespace PieDialog.PieViews
             text.SetTextSize(TextSizeFormat, TextSize);
             try
             {
-                if (Font >= 0)
+                if (!(string.IsNullOrEmpty(Font) || string.IsNullOrWhiteSpace(Font)))
                 {
-                    Typeface face = context.Resources.GetFont(Font);
-                    text.SetTypeface(face, FontStyle);
+                    try
+                    {
+                        Typeface face = FontCache.Instance.GetFont(Font, context);
+                        text.SetTypeface(face, FontStyle);
+                    }
+                    catch (Exception) { }
                 }
             }
             catch (Exception)

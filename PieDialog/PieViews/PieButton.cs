@@ -8,6 +8,7 @@ using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using PieDialog.CacheUtils;
 using PieDialog.PieEnums;
 using PieDialog.PieUtilities;
 using static Android.Text.TextUtils;
@@ -26,7 +27,7 @@ namespace PieDialog.PieViews
         public PieGravityProperties TextGravity { get; set; } = PieGravityProperties.Center;
         public PieThickness Padding { get; set; } = new PieThickness(0, 0, 10, 10);
         public string Text { get; set; } = "Button";
-        public int Font { get; set; } = -1;
+        public string Font { get; set; } = string.Empty;
         public int TextSize { get; set; } = 15;
         public ComplexUnitType TextSizeFormat { get; set; } = ComplexUnitType.Sp;
         public int MaxLines { get; set; } = -1;
@@ -117,10 +118,14 @@ namespace PieDialog.PieViews
             card.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);
             (card.LayoutParameters as LinearLayout.LayoutParams).SetMargins((int)(Margin.Left * density), (int)(Margin.Top * density), (int)(Margin.Right * density), (int)(Margin.Bottom * density));
             TextView text = new TextView(context);
-            if (Font >= 0)
+            if (!(string.IsNullOrEmpty(Font) || string.IsNullOrWhiteSpace(Font)))
             {
-                Typeface face = context.Resources.GetFont(Font);
-                text.SetTypeface(face, FontStyle);
+                try
+                {
+                    Typeface face = FontCache.Instance.GetFont(Font, context);
+                    text.SetTypeface(face, FontStyle);
+                }
+                catch (Exception) { }
             }
             text.SetPadding((int)(Padding.Left * density), (int)(Padding.Top * density), (int)(Padding.Right * density), (int)(Padding.Bottom * density));
             text.Text = Text;

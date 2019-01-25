@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using PieDialog.CacheUtils;
 using PieDialog.PieUtilities;
 using static Android.App.DatePickerDialog;
 
@@ -30,7 +31,7 @@ namespace PieDialog.PieViews
 
         public PieThickness Margin { get; set; } = new PieThickness(10, 10, 10, 10);
 
-        public int Font { get; set; } = -1;
+        public string Font { get; set; } = string.Empty;
 
         public DateTime Value { get { return GetValue(); } }
 
@@ -63,11 +64,15 @@ namespace PieDialog.PieViews
             editText.SetTextSize(TextSizeFormat, TextSize);
             editText.Gravity = GravityFlags.Left;
             editText.SetSingleLine(true);
-            editText.SetFocusable(ViewFocusability.NotFocusable);
-            if (Font >= 0)
+            editText.Focusable = true;
+            if (!(string.IsNullOrEmpty(Font) || string.IsNullOrWhiteSpace(Font)))
             {
-                Typeface face = context.Resources.GetFont(Font);
-                editText.SetTypeface(face, FontStyle);
+                try
+                {
+                    Typeface face = FontCache.Instance.GetFont(Font, context);
+                    editText.SetTypeface(face, FontStyle);
+                }
+                catch (Exception) { }
             }
 
             editText.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.WrapContent);

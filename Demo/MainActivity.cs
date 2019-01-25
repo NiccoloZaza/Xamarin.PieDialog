@@ -39,7 +39,7 @@ namespace Demo
                 Padding = new PieThickness(0, 0, 10, 0),
                 Ellipsize = PieEllipsizes.None,
                 Gravity = PieGravityProperties.Center,
-                Font = Resource.Font.bpgmrgvlovani,
+                Font = "bpgmrgvlovani.ttf",
                 MaxLines = 0,
                 FontStyle = Android.Graphics.TypefaceStyle.Normal,
                 Text = "რეგისტრაცია",
@@ -54,7 +54,7 @@ namespace Demo
                 Ellipsize = PieEllipsizes.None,
                 Gravity = PieGravityProperties.Center,
                 MaxLines = 0,
-                Font = Resource.Font.bpgmrgvlovani,
+                Font = "bpgmrgvlovani.ttf",
                 FontStyle = Android.Graphics.TypefaceStyle.Normal,
                 Text = "შეიყვანეთ ინფორმაცია",
                 TextColor = new Android.Graphics.Color(115, 116, 115),
@@ -64,7 +64,7 @@ namespace Demo
 
             builder.AddDateTimePicker(new PieDatePicker()
             {
-                Font = Resource.Font.bpgmrgvlovani,
+                Font = "bpgmrgvlovani.ttf",
                 FontStyle = TypefaceStyle.Normal,
                 PlaceHolder = "Date Of Birth",
                 DefaultDate = DateTime.Now,
@@ -72,7 +72,7 @@ namespace Demo
 
             builder.AddEditText(new PieEditText()
             {
-                Font = Resource.Font.bpgmrgvlovani,
+                Font = "bpgmrgvlovani.ttf",
                 FontStyle = TypefaceStyle.Normal,
                 PlaceHolder = "Name",
                 Gravity = PieGravityProperties.Left,
@@ -102,7 +102,7 @@ namespace Demo
                 FontStyle = TypefaceStyle.Normal,
                 Padding = new PieThickness(10, 10, 10, 10),
                 Text = "დადასტურება",
-                Font = Resource.Font.bpgmrgvlovani,
+                Font = "bpgmrgvlovani.ttf",
                 TextAlignment = Android.Views.TextAlignment.Center,
                 TextColor = new Android.Graphics.Color(255, 255, 255),
                 TextGravity = PieGravityProperties.Center,
